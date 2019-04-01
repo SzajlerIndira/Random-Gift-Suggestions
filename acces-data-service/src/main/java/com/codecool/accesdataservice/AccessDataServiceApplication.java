@@ -1,4 +1,4 @@
-package com.codecool.randomgifter;
+package com.codecool.accesdataservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableSwagger2
-public class RandomGifterApplication {
+public class AccessDataServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RandomGifterApplication.class, args);
+        SpringApplication.run(AccessDataServiceApplication.class, args);
     }
 
 }
