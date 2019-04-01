@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/acces-data-service/acces-data-service.iml" filepath="$PROJECT_DIR$/acces-data-service/acces-data-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data-saver-service/data-saver-service.iml" filepath="$PROJECT_DIR$/data-saver-service/data-saver-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/random-gifter/random-gifter.iml" filepath="$PROJECT_DIR$/random-gifter/random-gifter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-registry/service-registry.iml" filepath="$PROJECT_DIR$/service-registry/service-registry.iml" />
+    </modules>
+  </component>
+</project>
