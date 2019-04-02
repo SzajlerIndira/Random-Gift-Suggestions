@@ -38,18 +38,18 @@
             </div>
         </header>
 
-        <form action="#" th:action="@{/addnewperson}" method="post">
+        <form action="#" th:action="@{/addnewperson}" th:object="${person}" method="post">
             <div class="input-group input-group-lg mb-3">
 
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="add-person">Person</span>
                 </div>
-                <input type="text" class="form-control" >
+                <input type="text" th:field="*{name}" class="form-control" >
                 <div class="input-group input-group-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="add-gift">Gift Idea</span>
                     </div>
-                    <input type="text" class="form-control" >
+                    <input type="text" th:field="*{giftName}" class="form-control" >
                 </div>
                 <input type="submit">
             </div>
