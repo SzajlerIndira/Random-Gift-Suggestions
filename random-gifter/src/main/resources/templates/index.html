@@ -38,18 +38,23 @@
             </div>
         </header>
 
-        <div class="input-group input-group-lg mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="add-person">Person</span>
+        <form action="#" th:action="@{/addnewperson}" method="post">
+            <div class="input-group input-group-lg mb-3">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="add-person">Person</span>
+                </div>
+                <input type="text" class="form-control" >
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="add-gift">Gift Idea</span>
+                    </div>
+                    <input type="text" class="form-control" >
+                </div>
+                <input type="submit">
             </div>
-            <input type="text" class="form-control" >
-        </div>
-        <div class="input-group input-group-lg">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="add-gift">Gift Idea</span>
-            </div>
-            <input type="text" class="form-control" >
-        </div>
+        </form>
+
 
 
     </div>
