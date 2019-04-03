@@ -19,11 +19,19 @@ public class DataSaveService {
 
     public String savePerson(String personName, String giftName) {
 
-        Person person = Person.builder()
-                .Name(personName)
-                .build();
+        Person person;
 
-        personRepo.saveAndFlush(person);
+        if (personRepo.getByName(personName) == null) {
+            person = Person.builder()
+                    .Name(personName)
+                    .build();
+
+            personRepo.saveAndFlush(person);
+
+        } else {
+            person = personRepo.getByName(personName);
+        }
+
 
         Gift gift = Gift.builder()
                 .person(person)

@@ -5,6 +5,7 @@ import com.codecool.datasaverservice.model.PersonAndGift;
 import com.codecool.datasaverservice.repository.GiftRepository;
 import com.codecool.datasaverservice.repository.PersonRepository;
 import com.codecool.datasaverservice.service.DataSaveService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,6 @@ public class DataSaverController {
     @PostMapping("/add-new-person")
     public void savePerson(@RequestBody PersonAndGift personAndGift) {
         dataSaverService.savePerson(personAndGift.getName(), personAndGift.getGiftName());
-        System.out.println(personAndGift);
+
     }
 }
