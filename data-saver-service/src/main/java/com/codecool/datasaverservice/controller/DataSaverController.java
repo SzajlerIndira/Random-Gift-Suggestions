@@ -1,5 +1,6 @@
 package com.codecool.datasaverservice.controller;
 
+import com.codecool.datasaverservice.model.Gift;
 import com.codecool.datasaverservice.model.Person;
 import com.codecool.datasaverservice.model.PersonAndGift;
 import com.codecool.datasaverservice.repository.GiftRepository;
@@ -30,8 +31,12 @@ public class DataSaverController {
     }
 
     @PostMapping("/add-new-person")
-    public void savePerson(@RequestBody PersonAndGift personAndGift) {
+    private void savePerson(@RequestBody PersonAndGift personAndGift) {
         dataSaverService.savePerson(personAndGift.getName(), personAndGift.getGiftName());
+    }
 
+    @GetMapping("/gifts")
+    private List<Gift> getGiftsByPerson(@RequestBody String personName) {
+        return dataSaverService.getGiftsByName(personName);
     }
 }
