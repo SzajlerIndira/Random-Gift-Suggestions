@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @SessionAttributes({"user"})
 public class AppController {
@@ -25,21 +28,22 @@ public class AppController {
         return new Person();
     }
 
+    @ModelAttribute("personlist")
+    public List<Person> getPersonList() {
+        return new ArrayList<>();
+    }
+
     @GetMapping(value = "/")
     public String welcomeView(Model model) {
         model.addAttribute("person", getPerson());
+        model.addAttribute("personlist", dataSaverService.getPersonNamesFromDataSaverService());
         return "index";
     }
 
     @PostMapping(value = "/add-new-person")
-    public String addNewPerson(@ModelAttribute Person person) {
+    public String addNewPerson(@ModelAttribute Person person, Model model) {
         System.out.println("From appController " + person);
         dataSaverService.createPerson(person);
-        return "index";
+        return "redirect:/";
     }
-
-
-
-
-
 }
