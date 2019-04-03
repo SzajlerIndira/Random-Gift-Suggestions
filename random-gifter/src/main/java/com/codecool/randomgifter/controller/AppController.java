@@ -41,4 +41,12 @@ public class AppController {
         dataSaverService.createPerson(person);
         return "redirect:/";
     }
+
+//    @GetMapping("/gifts")
+//    public String getGiftsByPerson(@RequestBody Person person, Model model) {
+//        List<String> giftListFromDataSaverService = dataSaverService.getGiftListFromDataSaverService(person.getName());
+//        String response = "test";
+//
+//        return response;
+//    }
 }

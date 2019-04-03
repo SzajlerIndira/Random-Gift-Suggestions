@@ -7,6 +7,6 @@ function getGifts(str) {
             document.getElementById("gifts-"+str).innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "/gifts", true);
+    xhttp.open("GET", "http://localhost:60300/gifts", true);
     xhttp.send();
 }
