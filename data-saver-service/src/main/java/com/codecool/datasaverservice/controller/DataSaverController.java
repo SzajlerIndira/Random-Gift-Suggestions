@@ -5,6 +5,8 @@ import com.codecool.datasaverservice.repository.GiftRepository;
 import com.codecool.datasaverservice.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,5 +22,10 @@ public class DataSaverController {
     @GetMapping("/all-person")
     private List<Person> getAllPerson() {
         return personRepository.findAll();
+    }
+
+    @PostMapping("/add-new-person")
+    public void savePerson(@RequestBody String person) {
+        System.out.println(person);
     }
 }
