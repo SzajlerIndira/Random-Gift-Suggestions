@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
-    private String name = "Dorello";
-    private String giftName = "Puppy";
+    private String name;
+    private String giftName;
 }

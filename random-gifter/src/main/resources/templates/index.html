@@ -40,23 +40,34 @@
 
         <form action="#" th:action="@{/add-new-person}" th:object="${person}" method="post">
             <div class="input-group input-group-lg mb-3">
-
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="add-person">Person</span>
                 </div>
                 <input type="text" th:field="*{name}" class="form-control" >
-                <div class="input-group input-group-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="add-gift">Gift Idea</span>
-                    </div>
-                    <input type="text" th:field="*{giftName}" class="form-control" >
+            </div>
+            <div class="input-group input-group-lg mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="add-gift">Gift Idea</span>
                 </div>
-                <input type="submit">
+                <input type="text" th:field="*{giftName}" class="form-control" >
+            </div>
+            <div>
+                <input type="submit" class="btn btn-secondary">
             </div>
         </form>
 
-
-
+        <table>
+            <thead>
+            <tr>
+                <th> Person </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${personlist}">
+                <td><span th:text="${person}"> Person </span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </body>
