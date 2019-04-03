@@ -31,10 +31,11 @@ public class AppController {
         return "index";
     }
 
-    @PostMapping(value = "/addnewperson")
-    public void addNewPerson(@ModelAttribute Person person) {
+    @PostMapping(value = "/add-new-person")
+    public String addNewPerson(@ModelAttribute Person person) {
         System.out.println("From appController " + person);
         dataSaverService.createPerson(person);
+        return "index";
     }
 
 

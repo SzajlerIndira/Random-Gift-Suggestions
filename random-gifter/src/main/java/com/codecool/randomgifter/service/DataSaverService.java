@@ -1,6 +1,7 @@
 package com.codecool.randomgifter.service;
 
 import com.codecool.randomgifter.model.Person;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.spring.web.json.Json;
 
 @Service
 public class DataSaverService {
@@ -20,14 +22,11 @@ public class DataSaverService {
     private String dataSaverUrl;
 
     public String createPerson(Person person) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<Person> request = new HttpEntity<>(person);
         System.out.println("Coming from DataSaverService");
-        ResponseEntity<String> response = restTemplate.postForEntity(dataSaverUrl, request, String.class);
+        ResponseEntity<Json> response = restTemplate.postForEntity(dataSaverUrl, request, Json.class);
         System.out.println(response);
         return "SUCCESS";
     }
-
-
 }
+
