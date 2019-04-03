@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
@@ -14,68 +15,78 @@
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-    <link href="/style.css" rel="stylesheet" />
+    <link href="/style.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container">
-        <header class="media">
-            <div class="media-body">
-                <h1 class="media-heading">Random Gift Suggestion</h1>
-                <span th:text="${user.userName}"/>
-            </div>
-        </header>
+<div class="container">
+    <header class="media">
+        <div class="media-body">
+            <h1 class="media-heading">Random Gift Suggestion</h1>
+            <span th:text="${user.userName}"/>
+        </div>
+    </header>
 
-        <form action="#" th:action="@{/add-new-person}" th:object="${person}" method="post">
-            <div class="input-group input-group-lg mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="add-person">Person</span>
+    <form action="#" th:action="@{/add-new-person}" th:object="${person}" method="post">
+        <div class="input-group input-group-lg mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="add-person">Person</span>
+            </div>
+            <input type="text" th:field="*{name}" class="form-control">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="add-gift">Gift Idea</span>
+            </div>
+            <input type="text" th:field="*{giftName}" class="form-control">
+        </div>
+        <div>
+            <input type="submit" class="btn btn-secondary">
+        </div>
+    </form>
+
+    <div th:each="person : ${personlist}">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" th:id="'heading' + ${person}">
+                    <h2 class="mb-0">
+                        <button onclick="getGifts(this.value)"
+                                th:value="${person}"
+                                class="btn btn-link" type="button" data-toggle="collapse"
+                                th:href="'#collapse' + ${person}" aria-expanded="false"
+                                th:aria-controls="'collapse' +${person}">
+                            <span th:text="${person}"> Person </span>
+                        </button>
+                    </h2>
                 </div>
-                <input type="text" th:field="*{name}" class="form-control" >
-            </div>
-            <div class="input-group input-group-lg mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="add-gift">Gift Idea</span>
-                </div>
-                <input type="text" th:field="*{giftName}" class="form-control" >
-            </div>
-            <div>
-                <input type="submit" class="btn btn-secondary">
-            </div>
-        </form>
 
-        <div th:each="person : ${personlist}">
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-header" th:onclick="getGifts(${person})" th:id="'heading' + ${person}">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" th:href="'#collapse' + ${person}" aria-expanded="false" th:aria-controls="'collapse' +${person}">
-                                <span th:text="${person}"> Person </span>
-                            </button>
-                        </h2>
-                    </div>
+                <div th:id="'collapse' + ${person}" class="collapse" th:aria-labelledby="'heading' + ${person}"
+                     data-parent="#accordionExample">
+                    <div th:id="'gifts-'+${person}" class="card-body" th:value="Test">
 
-                    <div th:id="'collapse' + ${person}" class="collapse" th:aria-labelledby="'heading' + ${person}" data-parent="#accordionExample">
-                        <div th:id="'gifts-'+${person}">
-                            <div class="card-body" th:value="Test">
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/main.js"></script>
+</div>
+<script type="text/javascript" src="/main.js"></script>
 
 </body>
 </html>
