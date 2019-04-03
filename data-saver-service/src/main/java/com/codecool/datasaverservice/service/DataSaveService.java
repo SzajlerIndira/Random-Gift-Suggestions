@@ -17,10 +17,18 @@ public class DataSaveService {
     @Autowired
     private GiftRepository giftRepo;
 
-    public String savePerson(Person person, Gift gift) {
+    public String savePerson(String personName, String giftName) {
+
+        Person person = Person.builder()
+                .Name(personName)
+                .build();
 
         personRepo.saveAndFlush(person);
-        gift.setPerson(person);
+
+        Gift gift = Gift.builder()
+                .person(person)
+                .name(giftName)
+                .build();
         giftRepo.saveAndFlush(gift);
 
 
