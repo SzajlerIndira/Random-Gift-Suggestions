@@ -56,7 +56,7 @@
         <div th:each="person : ${personlist}">
             <div class="accordion" id="accordionExample">
                 <div class="card">
-                    <div class="card-header" th:id="'heading' + ${person}">
+                    <div class="card-header" th:onclick="getGifts(${person})" th:id="'heading' + ${person}">
                         <h2 class="mb-0">
                             <button class="btn btn-link" type="button" data-toggle="collapse" th:href="'#collapse' + ${person}" aria-expanded="false" th:aria-controls="'collapse' +${person}">
                                 <span th:text="${person}"> Person </span>
@@ -65,17 +65,17 @@
                     </div>
 
                     <div th:id="'collapse' + ${person}" class="collapse" th:aria-labelledby="'heading' + ${person}" data-parent="#accordionExample">
-                        <div th:each="gift: ${giftlist}">
-                            <div class="card-body" th:value="${gift}">
+                        <div th:id="'gifts-'+${person}">
+                            <div class="card-body" th:value="Test">
 
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/main.js"></script>
 
 </body>
 </html>
