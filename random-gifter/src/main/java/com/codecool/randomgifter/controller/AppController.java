@@ -28,15 +28,11 @@ public class AppController {
         return new Person();
     }
 
-    @ModelAttribute("personlist")
-    public List<Person> getPersonList() {
-        return new ArrayList<>();
-    }
-
     @GetMapping(value = "/")
     public String welcomeView(Model model) {
         model.addAttribute("person", getPerson());
         model.addAttribute("personlist", dataSaverService.getPersonNamesFromDataSaverService());
+        model.addAttribute("giftlist", dataSaverService.getGiftListFromDataSaverService());
         return "index";
     }
 

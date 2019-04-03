@@ -1,5 +1,6 @@
 package com.codecool.randomgifter.service;
 
+import com.codecool.randomgifter.model.Gift;
 import com.codecool.randomgifter.model.Person;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,20 @@ public class DataSaverService {
             names.add(person.getName());
         }
         return names;
+    }
+
+    public List<String> getGiftListFromDataSaverService() {
+        ResponseEntity<List<Gift>> response = restTemplate.exchange(
+                retrieveDataUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Gift>>() {});
+        List<Gift> gifts = response.getBody();
+        List<String> giftNames = new ArrayList<>();
+        for (Gift gift: gifts) {
+            giftNames.add(gift.getName());
+        }
+        return giftNames;
     }
 }
 
