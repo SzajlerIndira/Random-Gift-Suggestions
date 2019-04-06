@@ -35,10 +35,10 @@
     <link href="/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="container">
+<div class="container pb-5">
     <header class="media">
         <div class="media-body">
-            <h1 class="media-heading">Random Gift Suggestion</h1>
+            <h1 class="media-heading mt-3">Random Gift Suggestion</h1>
             <span th:text="${user.userName}"/>
         </div>
     </header>
@@ -57,11 +57,11 @@
             <input type="text" th:field="*{giftName}" class="form-control">
         </div>
         <div>
-            <input type="submit" class="btn btn-secondary">
+            <input type="submit" class="btn btn-secondary mb-1">
         </div>
     </form>
 
-    <div th:each="person : ${personlist}">
+    <div class="mt-2" th:each="person : ${personlist}">
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" th:id="'heading' + ${person}">
