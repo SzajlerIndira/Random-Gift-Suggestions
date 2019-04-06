@@ -28,11 +28,6 @@ public class AppController {
         return new Person();
     }
 
-    @ModelAttribute("personlist")
-    public List<Person> getPersonList() {
-        return new ArrayList<>();
-    }
-
     @GetMapping(value = "/")
     public String welcomeView(Model model) {
         model.addAttribute("person", getPerson());
@@ -46,4 +41,12 @@ public class AppController {
         dataSaverService.createPerson(person);
         return "redirect:/";
     }
+
+//    @GetMapping("/gifts")
+//    public String getGiftsByPerson(@RequestBody Person person, Model model) {
+//        List<String> giftListFromDataSaverService = dataSaverService.getGiftListFromDataSaverService(person.getName());
+//        String response = "test";
+//
+//        return response;
+//    }
 }

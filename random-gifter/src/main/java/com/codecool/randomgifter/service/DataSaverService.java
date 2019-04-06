@@ -1,5 +1,6 @@
 package com.codecool.randomgifter.service;
 
+import com.codecool.randomgifter.model.Gift;
 import com.codecool.randomgifter.model.Person;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,14 @@ public class DataSaverService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${data-saver.url}")
+    @Value("${data-saver.url}/add-new-person")
     private String dataSaverUrl;
 
-    @Value("http://data-saver/all-person")
+    @Value("${data-saver.url}/all-person")
     private String retrieveDataUrl;
+
+    @Value("${data-saver.url}/gifts")
+    private String getGiftsUrl;
 
     public String createPerson(Person person) {
         HttpEntity<Person> request = new HttpEntity<>(person);
@@ -46,5 +50,37 @@ public class DataSaverService {
         }
         return names;
     }
+
+        public List<String> getGiftListFromDataSaverService(String personName) {
+        HttpEntity<String> request = new HttpEntity<>(personName);
+        ResponseEntity<Json> jsonResponse = restTemplate.postForEntity(getGiftsUrl, request, Json.class);
+
+
+        ResponseEntity<List<Gift>> giftResponse = restTemplate.exchange(
+                getGiftsUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Gift>>() {});
+        List<Gift> gifts = giftResponse.getBody();
+        List<String> giftNames = new ArrayList<>();
+        for (Gift gift: gifts) {
+            giftNames.add(gift.getName());
+        }
+        return giftNames;
+    }
+
+//    public List<String> getGiftListFromDataSaverService() {
+//        ResponseEntity<List<Gift>> response = restTemplate.exchange(
+//                retrieveDataUrl,
+//                HttpMethod.GET,
+//                null,
+//                new ParameterizedTypeReference<List<Gift>>() {});
+//        List<Gift> gifts = response.getBody();
+//        List<String> giftNames = new ArrayList<>();
+//        for (Gift gift: gifts) {
+//            giftNames.add(gift.getName());
+//        }
+//        return giftNames;
+//    }
 }
 
